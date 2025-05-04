@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Type and Save</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f0f0f0;
+    }
+
+    .editable-area {
+      border: 2px dashed #444;
+      padding: 20px;
+      min-height: 300px;
+      background-color: #fff;
+      outline: none;
+    }
+
+    h1 {
+      color: #222;
+    }
+  </style>
+</head>
+<body>
+  <div id="editable" class="editable-area" contenteditable="true">
+    Start typing here...
+  </div>
+
+  <script>
+    const editableDiv = document.getElementById('editable');
+
+    // Load saved content on page load
+    window.addEventListener('load', () => {
+      const savedText = localStorage.getItem('typedText');
+      if (savedText) {
+        editableDiv.innerHTML = savedText;
+      }
+    });
+
+    // Save content to local storage on every input
+    editableDiv.addEventListener('input', () => {
+      localStorage.setItem('typedText', editableDiv.innerHTML);
+    });
+    const height = window.innerHeight;
+      document.getElementById("editable").style.minHeight = String(height-100) + "px";
+  </script>
+</body>
+</html>
+
